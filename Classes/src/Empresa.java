@@ -2,7 +2,6 @@ package com.classes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import com.classes.Funcionario;
 
 public class Empresa {
 
@@ -13,22 +12,33 @@ public class Empresa {
     protected String telefone;
     protected String cnpj;
 
-    protected ArrayList<Funcionario> workers = new ArrayList<Funcionario>();
+    public enum setores{
+        REQUISITOS,
+        MODELAGEM,
+        CODIFICACAO,
+        TESTE,
+        RECURSOS_HUMANOS
+    }
 
+    public static ArrayList<Funcionario> workers = new ArrayList<Funcionario>();
 
     public void admitir() {
 
         Funcionario funcionario = new Funcionario();
+        //Contrato contrato = new Contrato();
+
         System.out.println("Admitir funcionario (test)");
 
         System.out.print("Insira o nome: ");
-        funcionario.setNome(input.next());
+        funcionario.setNome(input.nextLine());
 
         System.out.print("Insira o sobrenome: ");
-        funcionario.setSobrenome(input.next());
+        funcionario.setSobrenome(input.nextLine());
 
-        System.out.print("Insira o endereço: ");
-        funcionario.setEndereco(input.next());
+        System.out.println("Digite o endereço: ");
+        funcionario.setEndereco();
+
+        input.reset();
 
         System.out.print("Insira a idade: ");
         funcionario.setIdade(input.nextInt());
@@ -45,22 +55,49 @@ public class Empresa {
         System.out.print("Insira o telefone: ");
         funcionario.setTelefone(input.next());
 
+        System.out.println("DADOS CONTRATUAIS");
+
+        System.out.print("Insira o salario:");
+        int salary = input.nextInt();
+
+        System.out.println("Insira o setor:\n1- REQUISITOS \n2- MODELAGEM \n3- CODIFICACAO \n4- TESTES \n5- RECURSOS HUMANOS");
+        setores sector;
+        switch (input.nextInt()) {
+            case 1 -> sector = setores.REQUISITOS;
+            case 2 -> sector = setores.MODELAGEM;
+            case 3 -> sector = setores.CODIFICACAO;
+            case 4 -> sector = setores.TESTE;
+            case 5 -> sector = setores.RECURSOS_HUMANOS;
+            default -> sector = setores.CODIFICACAO;
+        }
+
+        Contrato contrato = new Contrato(funcionario, salary, sector);
+        funcionario.setContrato(contrato);
+
+
         workers.add(funcionario);
         System.out.println("corno admitido com sucesso kkk");
+
+
     }
 
     public void consultar(String... args) {
         for (Funcionario i :
                 workers) {
             if (workers.contains(i)) {
-                System.out.println("Nome: " + i.getNome());
-                System.out.println("Sobrenome: " + i.getSobrenome());
-                System.out.println("Endereco: " + i.getEndereco());
+                System.out.println("Nome: " + i.getNome() + " "+i.getSobrenome());
+                //System.out.println("Sobrenome: " + i.getSobrenome());
+                System.out.println("Endereco:");
+                System.out.println("Bairro: "+i.address.get("Bairro"));
+                System.out.println("Cidade: "+i.address.get("Cidade"));
+                System.out.println("Estado: "+i.address.get("Estado"));
                 System.out.println("idade: " + i.getIdade());
                 System.out.println("Sexokkkkkkk: " + i.getSexo());
                 System.out.println("CPF: " + i.getCpf());
                 System.out.println("Email: " + i.getEmail());
                 System.out.println("Zap: " + i.getTelefone());
+                System.out.println("id: "+i.getContrato().id);
+                System.out.println("Setor: "+i.getContrato().setor);
 
                 break;
             }
@@ -91,7 +128,7 @@ public class Empresa {
             case 3 -> {
                 System.out.print("Novo endereço:");
                 String endereco = input.next();
-                worker.setEndereco(endereco);
+                worker.setEndereco();
                 System.out.println("ae poha");
             }
             case 4 -> {

@@ -1,18 +1,26 @@
 package com.classes;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.Scanner;
+
 public class Funcionario {
 
-    private String nome;
-    private String sobrenome;
-    private String endereco;
-    private int idade;
-    private char sexo;
-    private String cpf;
-    private String email;
-    private String telefone;
+    Scanner input = new Scanner(System.in);
+
+    protected String nome;
+    protected String sobrenome;
+    protected String endereco;
+    protected int idade;
+    protected char sexo;
+    protected String cpf;
+    protected String email;
+    protected String telefone;
+    protected Dictionary<String, String> address;
+    protected Contrato contrato;
 
     public Funcionario(){
-
+        address = new Hashtable<String, String>();
     }
 
     public Funcionario(String name, String surname, String addres, int age, char sex, String ppr, String mail, String phone){
@@ -24,6 +32,7 @@ public class Funcionario {
         cpf = ppr;
         email = mail;
         telefone = phone;
+        address = new Hashtable<String, String>();
     }
 
     public void setNome(String nome) {
@@ -42,8 +51,21 @@ public class Funcionario {
         return sobrenome;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setEndereco() {
+        String endereco;
+
+        System.out.print("Insira o bairro: ");
+        endereco = input.nextLine();
+        this.address.put("Bairro", endereco);
+
+        System.out.print("Insira a cidade: ");
+        endereco = input.nextLine();
+        this.address.put("Cidade", endereco);
+
+        System.out.print("Insira o estado: ");
+        endereco = input.nextLine();
+        this.address.put("Estado", endereco);
+        input.reset();
     }
 
     public String getEndereco() {
@@ -90,5 +112,11 @@ public class Funcionario {
         return telefone;
     }
 
+    public void setContrato(Contrato contrato) {
+        this.contrato = contrato;
+    }
 
+    public Contrato getContrato() {
+        return contrato;
+    }
 }
