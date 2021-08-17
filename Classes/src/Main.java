@@ -7,11 +7,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        Empresa gay = new Empresa();
+        Empresa teste = new Empresa();
 
-        gay.admitir();
-        System.out.println("Qual o nome do corno?????");
+        teste.admitir();
+        System.out.println("Insira o nome do funcionário: ");
         String nome = input.next();
-        gay.consultar(nome);
+        teste.consultar(nome);
     }
 }
