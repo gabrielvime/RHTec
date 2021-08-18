@@ -17,7 +17,7 @@ public class Funcionario {
     protected String email;
     protected String telefone;
     protected Dictionary<String, String> address;
-    protected Contrato contrato;
+    private int contratoIndex;
 
     public Funcionario(){
         address = new Hashtable<String, String>();
@@ -55,17 +55,20 @@ public class Funcionario {
         String endereco;
 
         System.out.print("Insira o bairro: ");
-        endereco = input.nextLine();
+        endereco = input.next();
         this.address.put("Bairro", endereco);
 
         System.out.print("Insira a cidade: ");
-        endereco = input.nextLine();
+        endereco = input.next();
         this.address.put("Cidade", endereco);
 
         System.out.print("Insira o estado: ");
-        endereco = input.nextLine();
+        endereco = input.next();
         this.address.put("Estado", endereco);
-        input.reset();
+
+        //System.out.println("digite enter para continuar");
+        input.nextLine();
+
     }
 
     public String getEndereco() {
@@ -112,11 +115,14 @@ public class Funcionario {
         return telefone;
     }
 
-    public void setContrato(Contrato contrato) {
-        this.contrato = contrato;
+    public void setContrato(int i) {
+        this.contratoIndex = i;
     }
 
-    public Contrato getContrato() {
-        return contrato;
+    public void setContratoIndex(int index){
+        this.contratoIndex = index;
+    }
+    public int getContratoIndex() {
+        return contratoIndex;
     }
 }

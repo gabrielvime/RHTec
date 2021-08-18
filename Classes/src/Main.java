@@ -7,13 +7,17 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        Empresa gay = new Empresa();
+        Empresa teste = new Empresa();
 
-        gay.admitir();
+        teste.admitir();
         System.out.println();
         System.out.println();
-        System.out.println("Qual o nome do corno?????");
-        String nome = input.next();
-        gay.consultar(nome);
+        //System.out.println("Insira o nome do funcionário: ");
+        //String nome = input.nextLine();
+        //teste.consultar(nome);
+        teste.admitir();
+
+        teste.visualizar_todos();
+
     }
 }

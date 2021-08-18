@@ -1,11 +1,7 @@
 package com.classes;
-import com.classes.Empresa.*;
+import static com.classes.Empresa.*;
 
 public class Contrato{
-    private enum cargos{
-        COLABORADOR,
-        CHEFE
-    }
     private Funcionario funcionario;
     protected int id;
     private int salario;
@@ -16,14 +12,31 @@ public class Contrato{
 
     }
 
-    public Contrato(Funcionario employee, int salary, setores sector){
+    public Contrato(Funcionario employee, int salary, setores sector, cargos role){
         this.funcionario = employee;
         this.id = 100000 + (int)(Math.random() * (899999 + 1)) ;
         this.salario = salary;
         this.setor = sector;
+        this.cargo = role;
     }
 
-    public void setCargo(cargos cargo) {
-        this.cargo = cargo;
+    public setores getSetor(){
+        return this.setor;
+    }
+
+    public void setSetor(setores novo){
+        this.setor = novo;
+    }
+
+    public cargos getCargo(){
+        return this.cargo;
+    }
+
+    public void setCargo(cargos novo){
+        this.cargo = novo;
+    }
+
+    public Funcionario getFuncionario(){
+        return this.funcionario;
     }
 }
