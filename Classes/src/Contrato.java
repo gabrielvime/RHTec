@@ -39,4 +39,12 @@ public class Contrato{
     public Funcionario getFuncionario(){
         return this.funcionario;
     }
+
+    public void setSalario(int salario) {
+        this.salario = salario;
+    }
+
+    public int getSalario(){
+        return this.salario;
+    }
 }

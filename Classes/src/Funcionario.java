@@ -71,8 +71,8 @@ public class Funcionario {
 
     }
 
-    public String getEndereco() {
-        return endereco;
+    public Dictionary<String, String> getEndereco() {
+        return address;
     }
 
     public void setIdade(int idade) {

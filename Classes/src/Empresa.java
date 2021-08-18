@@ -228,81 +228,213 @@ public class Empresa {
         }
     }
 
-    //PENDENTE
-    public void atualizar(Funcionario worker) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Atualizar (test)");
-        System.out.println("1- Nome(X) \n 2- Sobrenome(X) \n 3- Endereco \n 4- Idade \n 5- Sexo(X) \n 6- CPF(X) \n 7- Email \n 8- Telefone");
-        int choice = input.nextInt();
+    public void atualizar(String update) {
+        for (Contrato i :
+                contratos) {
+            if (i.getFuncionario().getNome().equals(update) | i.getFuncionario().getCpf().equals(update)) {
+                Funcionario employee = i.getFuncionario();
 
-        //OPÇÕES COM  (X)  TALVEZ SERÃO REMOVIDAS
-        //SEUS  case  ESTÃO COMENTADOS
+                System.out.println("""
+                        0 - Sair
+                                                
+                        DADOS PESSOAIS\s
+                        1- Nome\s
+                        2- Sobrenome\s
+                        3- Endereco\s
+                        4- Idade\s
+                        5- Sexo(\s
+                        6- CPF\s
+                        7- Email\s
+                        8- Telefone\s
+                                             
+                        DADOS CONTRATUAIS\s
+                        9- Salario\s
+                        10- Setor\s
+                        11- Cargo""");
 
-        switch (choice) {
-            /*case 1 -> {
-                System.out.print("Novo nome: ");
-                String nome = input.nextLine();
-                worker.setNome(nome);
-                System.out.println("Nome atualizado com sucesso.");
-            }
-            case 2 -> {
-                System.out.print("Novo sobrenome: ");
-                String sobrenome = input.nextLine();
-                worker.setSobrenome(sobrenome);
-                System.out.println("Sobrenome atualizado com sucesso.");
-            }*/
-            case 3 -> {
-                System.out.print("Novo endereço:");
-                worker.setEndereco();
-                System.out.println("Endereço atualizado com sucesso.");
-            }
-            case 4 -> {
-                System.out.print("Nova idade:");
-                int idade = input.nextInt();
-                worker.setIdade(idade);
-                System.out.println("Idade atualizada com sucesso.");
-            }
-            /*case 5 -> {
-                System.out.print("Novo sexo(???):");
-                char sexo = input.next().charAt(0);
-                worker.setSexo(sexo);
-                System.out.println("Sexo atualizado com sucesso.");
-            }*/
-            /*case 6 -> {
-                System.out.print("Novo cpf:");
-                String cpf = input.nextLine();
-                worker.setNome(cpf);
-                System.out.println("CPF atualizado com sucesso.");
-            }*/
-            case 7 -> {
-                System.out.print("Novo email:");
-                String email = input.nextLine();
-                worker.setNome(email);
-                System.out.println("Email atualizado com sucesso.");
-            }
-            case 8 -> {
-                System.out.print("Novo telefone:");
-                String telefone = input.nextLine();
-                worker.setNome(telefone);
-                System.out.println("Telefone atualizado com sucesso.");
+                switch (input.nextInt()) {
+                    case 1 -> {
+                        System.out.print("Novo nome: ");
+                        employee.setNome(input.next());
+                        System.out.println("Nome atualizado com sucesso.");
+                    }
+                    case 2 -> {
+                        System.out.print("Novo sobrenome: ");
+                        employee.setSobrenome(input.next());
+                        System.out.println("Sobrenome atualizado com sucesso.");
+                    }
+                    case 3 -> {
+                        System.out.print("Novo endereço: ");
+                        employee.setEndereco();
+                        System.out.println("Endereço atualizado com sucesso.");
+                    }
+                    case 4 -> {
+                        System.out.print("Nova idade: ");
+                        employee.setIdade(input.nextInt());
+                        System.out.println("Idade atualizada com sucesso.");
+                    }
+                    case 5 -> {
+                        System.out.print("Novo sexo: ");
+                        employee.setSexo(input.next().charAt(0));
+                        System.out.println("Sexo atualizado com sucesso.");
+                    }
+                    case 6 -> {
+                        System.out.print("Novo cpf: ");
+                        employee.setNome(input.next());
+                        System.out.println("CPF atualizado com sucesso.");
+                    }
+                    case 7 -> {
+                        System.out.print("Novo email: ");
+                        employee.setNome(input.next());
+                        System.out.println("Email atualizado com sucesso.");
+                    }
+                    case 8 -> {
+                        System.out.print("Novo telefone: ");
+                        employee.setNome(input.next());
+                        System.out.println("Telefone atualizado com sucesso.");
+                    }
+                    case 9 -> {
+                        System.out.print("Novo salario: ");
+                        i.setSalario(input.nextInt());
+                        System.out.println("Salario atualizado com sucesso.");
+                    }
+                    case 10 -> {
+                        System.out.print("Novo setor: ");
+                        i.setSetor(setores.setSetor(input.nextInt()));
+                        System.out.println("Setor atualizado com sucesso.");
+                    }
+                    case 11 -> {
+                        System.out.print("Novo cargo: ");
+                        i.setCargo(cargos.setCargo(input.nextInt()));
+                    }
+                }
+            } else {
+                System.out.println("Funcionario nao cadastrado");
             }
         }
-
     }
 
-    //PENDENTE
-   /* public void demitir(String ppr) {
-        employee.removeIf(funcionario -> funcionario.getCpf().equals(ppr));
-        System.out.println("vagabundo demitido");
-    }*/
+    public void demitir(String ppr) {
+        for (Contrato demissao:
+             contratos) {
+            if (demissao.getFuncionario().getCpf().equals(ppr)){
+                switch (demissao.getSetor()){
+                    case REQUISITOS -> requisitos.remove(demissao.getFuncionario());
+                    case MODELAGEM -> modelagem.remove(demissao.getFuncionario());
+                    case CODIFICACAO -> codificacao.remove(demissao.getFuncionario());
+                    case TESTE -> teste.remove(demissao.getFuncionario());
+                    case RECURSOS_HUMANOS -> rh.remove(demissao.getFuncionario());
+                }
+                contratos.remove(demissao);
+                System.out.println("Funcionario demitido");
+                break;
+
+            }if (contratos.lastIndexOf(demissao) == contratos.size() - 1) {
+                System.out.println("Funcionário não está cadastrado no sistema.");
+            }
+        }
+    }
 
     public void visualizar_todos() {
-        for (Contrato funcionario : contratos){
-            System.out.println("Nome: "+funcionario.getFuncionario().getNome());
-            System.out.println("Setor: "+funcionario.getSetor());
-            System.out.println("Cargo: "+funcionario.getCargo());
-            System.out.println();
+        if (!contratos.isEmpty()) {
+            for (Contrato funcionario : contratos) {
+                System.out.println("Nome: " + funcionario.getFuncionario().getNome());
+                System.out.println("Setor: " + funcionario.getSetor());
+                System.out.println("Cargo: " + funcionario.getCargo());
+                System.out.println();
+            }
+        }else {
+            System.out.println("Nao ha funcionarios cadastrados");
         }
+    }
+
+    public void visualizar (setores show){
+        switch (show){
+            case REQUISITOS -> {
+                for (Funcionario funcionario:
+                     requisitos) {
+                    System.out.println("Nome: "+funcionario.getNome());
+                    System.out.println("CPF: "+funcionario.getCpf());
+                }
+            }
+            case MODELAGEM -> {
+                for (Funcionario funcionario:
+                        modelagem) {
+                    System.out.println("Nome: "+funcionario.getNome());
+                    System.out.println("CPF: "+funcionario.getCpf());
+                }
+            }
+            case CODIFICACAO -> {
+                for (Funcionario funcionario:
+                        codificacao) {
+                    System.out.println("Nome: "+funcionario.getNome());
+                    System.out.println("CPF: "+funcionario.getCpf());
+                }
+            }
+            case TESTE -> {
+                for (Funcionario funcionario:
+                        teste) {
+                    System.out.println("Nome: "+funcionario.getNome());
+                    System.out.println("CPF: "+funcionario.getCpf());
+                }
+            }
+            case RECURSOS_HUMANOS -> {
+                for (Funcionario funcionario:
+                        rh) {
+                    System.out.println("Nome: "+funcionario.getNome());
+                    System.out.println("CPF: "+funcionario.getCpf());
+                }
+            }
+        }
+    }
+
+    public void visualizar (char sex){
+        for (Contrato contrato:
+             contratos) {
+            if (contrato.getFuncionario().getSexo() == sex){
+                System.out.println("Nome: "+contrato.getFuncionario().getNome());
+                System.out.println("CPF: "+contrato.getFuncionario().getCpf());
+            }
+        }
+    }
+    public void visualizar(String state){
+        for (Contrato contrato:
+                contratos) {
+            if (contrato.getFuncionario().getEndereco().get("Estado").equals(state)){
+                System.out.println("Nome: "+contrato.getFuncionario().getNome());
+                System.out.println("CPF: "+contrato.getFuncionario().getCpf());
+            }
+        }
+    }
+    public void salario(){
+        int menorIndex = 0;
+        int maiorIndex = 0;
+        int menor = 0;
+        int maior = 0;
+        for (Contrato contrato:
+             contratos) {
+            if (contrato.getSalario() < menor){
+                menor = contrato.getSalario();
+                menorIndex = contrato.getFuncionario().getContratoIndex();
+
+            }
+            if (contrato.getSalario() > maior){
+                maior = contrato.getSalario();
+                maiorIndex = contrato.getFuncionario().getContratoIndex();
+            }
+        }
+        System.out.println("Menor salario");
+        System.out.println("Salario: "+contratos.get(menorIndex));
+        System.out.println("Setor: "+contratos.get(menorIndex).getSetor());
+        System.out.println("Cargo: "+contratos.get(menorIndex).getCargo());
+        System.out.println();
+        System.out.println("Maior salario");
+        System.out.println("Salario: "+contratos.get(maiorIndex));
+        System.out.println("Setor: "+contratos.get(maiorIndex).getSetor());
+        System.out.println("Cargo: "+contratos.get(maiorIndex).getCargo());
+    }
+
+    public void setor (){
     }
 }
 

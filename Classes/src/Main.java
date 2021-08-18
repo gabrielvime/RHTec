@@ -15,7 +15,12 @@ public class Main {
         //System.out.println("Insira o nome do funcionário: ");
         //String nome = input.nextLine();
         //teste.consultar(nome);
-        teste.admitir();
+        //teste.admitir();
+        //teste.atualizar("joao");
+
+        teste.visualizar_todos();
+
+        teste.demitir("10111");
 
         teste.visualizar_todos();
 
