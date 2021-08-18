@@ -1,8 +1,5 @@
 package com.classes;
-
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Empresa {
@@ -54,7 +51,6 @@ public class Empresa {
         }
     }
 
-    //public static ArrayList<Funcionario> employee = new ArrayList<Funcionario>();
     //LISTA DE FUNCIONARIOS DE CADA SETOR
     public static ArrayList<Funcionario> requisitos = new ArrayList<Funcionario>();
     public static ArrayList<Funcionario> modelagem = new ArrayList<Funcionario>();
@@ -69,7 +65,7 @@ public class Empresa {
 
         Funcionario employee = new Funcionario();
 
-        System.out.println("\nAdmitir funcionario (test)\n");
+        System.out.println("\nAdmitir funcionario\n");
 
         System.out.print("Insira o nome: ");
         employee.setNome(input.next());
@@ -86,10 +82,8 @@ public class Empresa {
         System.out.print("Insira o sexo: ");
         employee.setSexo(input.next().charAt(0));
 
-
         System.out.print("Insira o cpf: ");
         employee.setCpf(input.next());
-
 
         System.out.print("Insira o email: ");
         employee.setEmail(input.next());
@@ -112,9 +106,7 @@ public class Empresa {
         boolean pass = true;
 
         //VERIFICA SE HÁ UM CHEFE NO SETOR
-
         int aux = -1;
-
         System.out.println("valor de i: " + i);
         switch (i) {
             case 1 -> {
@@ -133,12 +125,8 @@ public class Empresa {
             }
             case 2 -> {
                 if (!modelagem.isEmpty()) {
-                    System.out.println("model not empty");
                     for (Funcionario funcionario : modelagem) {
-                        System.out.println("test for loop");
-                        System.out.println("nome123: " + funcionario.getNome());
                         Contrato con = contratos.get(funcionario.getContratoIndex());
-                        System.out.println("test conrtrato");
                         if (con.getCargo().equals(cargos.CHEFE)) {
                             aux = contratos.lastIndexOf(con);
                             pass = false;
@@ -194,7 +182,6 @@ public class Empresa {
             }
         }
 
-        System.out.println(aux);
         if (role.equals(cargos.CHEFE)) {
             if (!pass) {
                 System.out.println("ja ha um chefe neste setor");
@@ -241,9 +228,10 @@ public class Empresa {
         }
     }
 
+    //PENDENTE
     public void atualizar(Funcionario worker) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Atualizar oq seu fdp ?????????");
+        System.out.println("Atualizar (test)");
         System.out.println("1- Nome(X) \n 2- Sobrenome(X) \n 3- Endereco \n 4- Idade \n 5- Sexo(X) \n 6- CPF(X) \n 7- Email \n 8- Telefone");
         int choice = input.nextInt();
 
@@ -302,6 +290,7 @@ public class Empresa {
 
     }
 
+    //PENDENTE
    /* public void demitir(String ppr) {
         employee.removeIf(funcionario -> funcionario.getCpf().equals(ppr));
         System.out.println("vagabundo demitido");
