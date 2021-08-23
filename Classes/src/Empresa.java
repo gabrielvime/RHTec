@@ -434,7 +434,34 @@ public class Empresa {
         System.out.println("Cargo: "+contratos.get(maiorIndex).getCargo());
     }
 
-    public void setor (){
+    public void checksetor (){
+        int[] size = new int[]{requisitos.size(), modelagem.size(), codificacao.size(), teste.size(),rh.size()};
+        int menor = 0;
+        int maior = 0;
+
+
+        for (int count = 0; count < 5; count++){
+            if (size[count] < size[menor]){
+                menor = count;
+            }
+            if (size[count] > size[maior]){
+                maior = count;
+            }
+        }
+        System.out.println("Menor setor: "+setores.setSetor(menor + 1).toString()+" ("+size[menor]+")");
+        System.out.println("Maior setor: "+setores.setSetor(maior + 1).toString()+" ("+size[maior]+")");
+    }
+
+    public void feminino(){
+        int count = 0;
+        for (Contrato i:
+             contratos) {
+            if (i.getFuncionario().getSexo() == 'F'){
+                count += 1;
+            }
+        }
+
+        System.out.println("Quantidade de funcionários do sexo Feminino: "+count);
     }
 }
 
