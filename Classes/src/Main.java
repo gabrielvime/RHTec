@@ -24,5 +24,10 @@ public class Main {
 
         teste.visualizar_todos();
 
+
+        teste.admitir();
+        System.out.println("Insira o nome do funcionário: ");
+        String nome = input.next();
+        teste.consultar(nome);
     }
 }

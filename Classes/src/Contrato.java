@@ -47,4 +47,10 @@ public class Contrato{
     public int getSalario(){
         return this.salario;
     }
+public class Contrato {
+	private Funcionario funcionario;
+	private enum setor;
+	private int id;
+	private int salario;
+	private String cargo;
 }
